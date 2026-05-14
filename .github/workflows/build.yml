@@ -18,9 +18,11 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
-    # 調整：直接安裝並使用系統級 Gradle，免去對專案內 gradle-wrapper.jar 的依賴
+    # 修正點：強制指定相容的 Gradle 8.4 版本
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v3
+      with:
+        gradle-version: '8.4'
 
     - name: Build with Gradle
       run: gradle assembleDebug
