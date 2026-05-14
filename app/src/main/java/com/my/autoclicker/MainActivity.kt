@@ -15,15 +15,19 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-// 定義腳本動作資料結構
 data class ActionCmd(val type: String, val x: Float, val y: Float, val delayMs: Long)
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            AppTheme {
-                MainControlPanel()
+            MaterialTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    MainControlPanel()
+                }
             }
         }
     }
@@ -40,24 +44,22 @@ class MainActivity : ComponentActivity() {
             Text("精靈高級輔助控制器", style = MaterialTheme.typography.headlineMedium)
             Spacer(modifier = Modifier.height(10.dp))
 
-            // 系統權限檢查與引導
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Button(onClick = { startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)) }) {
-                    Text("1. 啟用模擬點擊權限")
+                    Text("1. 啟用無障礙服務")
                 }
                 Button(onClick = { startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)) }) {
                     Text("2. 允許懸浮窗")
                 }
             }
 
-            Divider(modifier = Modifier.padding(vertical = 16.dp))
+            HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp))
 
-            // 控制開關區
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                 Button(
                     onClick = { 
                         isRecording = !isRecording 
-                        if(isRecording) actionList.clear() // 開始新錄製
+                        if(isRecording) actionList.clear()
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = if (isRecording) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary)
                 ) {
@@ -90,7 +92,6 @@ class MainActivity : ComponentActivity() {
 
             Spacer(modifier = Modifier.height(10.dp))
 
-            // 參數設定區
             OutlinedTextField(
                 value = loopCount,
                 onValueChange = { loopCount = it },
@@ -101,7 +102,6 @@ class MainActivity : ComponentActivity() {
             Spacer(modifier = Modifier.height(16.dp))
             Text("當前已錄製動作清單：", style = MaterialTheme.typography.titleMedium)
 
-            // 虛擬錄製捕獲測試（實務上可透過全螢幕透明懸浮窗點擊監聽來收集 X, Y）
             if (isRecording) {
                 Button(onClick = { 
                     actionList.add(ActionCmd("CLICK", 500f, 1000f, 1000L)) 
