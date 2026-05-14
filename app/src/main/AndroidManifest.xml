@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 修正點 1：xmlns 改回標準 Android 官方網址，並移除不支援的 package 屬性 -->
-<manifest xmlns:android="android.com">
+<manifest xmlns:android="http://android.com">
     
     <!-- 懸浮窗權限 -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
