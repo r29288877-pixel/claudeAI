@@ -1,4 +1,4 @@
-<accessibility-service xmlns:android="android.com"
+<accessibility-service xmlns:android="http://android.com"
     android:accessibilityEventTypes="typeAllMask"
     android:accessibilityFeedbackType="feedbackGeneric"
     android:accessibilityFlags="flagDefault|flagReportViewIds"
