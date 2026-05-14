@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">按鍵精靈助手</string>
+    <string name="service_desc">請啟用此服務以允許 App 模擬點擊與錄製遊戲腳本。</string>
+</resources>

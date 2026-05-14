@@ -1,0 +1,6 @@
+<accessibility-service xmlns:android="android.com"
+    android:accessibilityEventTypes="typeAllMask"
+    android:accessibilityFeedbackType="feedbackGeneric"
+    android:accessibilityFlags="flagDefault|flagReportViewIds"
+    android:canPerformGestures="true"
+    android:description="@string/service_desc" />
